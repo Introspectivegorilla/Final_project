@@ -1,13 +1,5 @@
 
 
-
-
-
-
-
-
-
-
 import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
@@ -47,7 +39,7 @@ db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOIN
 @app.route ("/")
 def home():
     
-    return render_template('register.html')
+    return render_template('login.html')
 
 @app.route("/login", methods=["GET","POST"]) #methods get/post allows us to retrieve and send information from forms (user input) 
 def login():
@@ -66,7 +58,7 @@ def login():
     check_table = db.execute("SELECT * FROM users WHERE username=?",request.form.get("username"))
     print(check_table)
     if len(check_table) == 1:
-        if check_table[0]['hash'] == generate_password_hash(request.form.get("password")):
+        if check_password_hash(check_table[0]['hash'], request.form.get("password")):
             return render_template('home.html')
         else:
             return render_template('apology.html',apology_message="Incorrect password. Sorry dude.")
