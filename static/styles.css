@@ -1,0 +1,32 @@
+
+/* https://www.vecteezy.com/free-vector/folder-icon folder icon source */
+
+.h1 {
+
+    font-family: 'Crimson', Quicksand;
+    font-size:36px;
+    padding:50px;
+}
+
+
+.horizontal {
+    display:flex;
+    justify-content:center;
+    gap:75px;
+}
+
+
+.offset1 {
+
+    margin-right:60px;
+}
+
+
+.center {
+    display:flex;
+    flex-direction:column;
+    /*justify-content:center;*/
+    align-items:center;
+    gap:100px;
+}
+
