@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
@@ -31,12 +42,11 @@ def after_request(response):
 
 
 db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT , username VARCHAR(30), hash)")
-
-
+#db.execute("DELETE FROM users")
 
 @app.route ("/")
 def home():
-
+    
     return render_template('register.html')
 
 @app.route("/login", methods=["GET","POST"]) #methods get/post allows us to retrieve and send information from forms (user input) 
@@ -47,12 +57,22 @@ def login():
     if request.method == "POST":
         if not request.form.get("username"):
             print("well shit")
+            return render_template('apology.html',apology_message="Enter an actual username.")
         elif not request.form.get("password"):
+            return render_template('apology.html',apology_message="Enter an actual password.")
             print("Hey u cheat")
         
     
     check_table = db.execute("SELECT * FROM users WHERE username=?",request.form.get("username"))
     print(check_table)
+    if len(check_table) == 1:
+        if check_table[0]['hash'] == generate_password_hash(request.form.get("password")):
+            return render_template('home.html')
+        else:
+            return render_template('apology.html',apology_message="Incorrect password. Sorry dude.")
+    else:
+        return render_template('apology.html',apology_message="That username isn't in our database.")
+    #print(check_table)
  
 
 
@@ -60,12 +80,16 @@ def login():
 def register():
 
     if request.method == "POST":
-         username = request.form.get("username")
-         password = request.form.get("password")
-
-         password = generate_password_hash(password)
-         db.execute("INSERT INTO users (username, hash) VALUES (?,?)",username,password)
-         return render_template("login.html")
+        username = request.form.get("username")
+        password = request.form.get("password")
+        check_table = db.execute("SELECT * FROM users WHERE username=?",username)
+        print(check_table)
+        if len(check_table) != 0:
+            return render_template('apology.html',apology_message="Sorry! That username was taken")
+        else:
+            password = generate_password_hash(password)
+            db.execute("INSERT INTO users (username, hash) VALUES (?,?)",username,password)
+            return render_template("login.html")
     else:
         return render_template("login.html")
 
