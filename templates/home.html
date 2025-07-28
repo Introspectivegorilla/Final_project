@@ -6,15 +6,15 @@
 {% block content %}
 
 
+<body class = "bg1">
 
-
-
-<div class="center offset1">
+<div class="center offset1 box1">
     <div class="horizontal">
     <h1>New flashcard set</h1>
     <h1>My sets</h1>
     </div>
-    <img src = "{{ url_for('static',filename='plus_sign.png')}}" width="100px" height="100px">
+    <img class = 'offset2' src = "{{ url_for('static',filename='plus_sign.png')}}" width="100px" height="100px">
+    <img class = 'offset3' src="{{ url_for('static',filename='folder_icon.jpg')}}" width="100px" height="100px">
 </div>
-
+</body>
 {% endblock %}
