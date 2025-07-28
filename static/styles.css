@@ -11,8 +11,21 @@
 
 }
 
+.box2 {
+
+    background-color: white;
+    border-radius:8px;
+    height:45%;
+    width:30%;
+}
 
 
+.box3 {
+
+    width: 60%;
+    height:100%;
+    background-color:white;
+}
 
 
 .h1 {
@@ -44,9 +57,12 @@
     display:block;
 }
 
+
+
 .bg1 {
 
     background-image: url("aqua_bg.jpeg");
+    background-position:center;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size:cover;
@@ -54,5 +70,52 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh; 
+    height:100vh;
+  
+}
+
+.l-corner {
+
+    position:absolute;
+    margin:0;
+    left:15px;
+    top:15px;
+    align-self:flex-start;
+}
+
+.r-corner {
+    position:absolute;
+    margin:0;
+    top:0px;
+    right:0px;
+    align-self:flex-start;
+
+}
+
+.question {
+
+    display:inline-block;
+    align-self:flex-start;
+    padding:20px;
+    width:420px;
+    height:300px;
+}
+
+.answer {
+
+    display:inline-block;
+    align-self:flex-end;
+    padding:20px;
+    width:420px;
+    height:300px;
+    margin:20px;
+
+}
+
+.btn1 {
+
+    background-color: aquamarine;
+    border-radius:5px;
+    height:80px;
+    width:120px;
 }
