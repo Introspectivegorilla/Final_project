@@ -30,11 +30,13 @@ def after_request(response):
 
 
 db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT , username VARCHAR(30), hash)")
-# db.execute("DELETE FROM users")
 
 
-cards = db.execute(
-    "CREATE TABLE IF NOT EXISTS flashcards (card_set,picture,title VARCHAR(20),user_id)")
+sets = db.execute("CREATE TABLE IF NOT EXISTS cardsets (set_name VARCHAR(25), set_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
+
+cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (card, card_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
+
+
 
 
 @app.route("/")
@@ -63,6 +65,8 @@ def login():
     print(check_table)
     if len(check_table) == 1:
         if check_password_hash(check_table[0]['hash'], request.form.get("password")):
+            session['user_id'] = check_table[0]['user_id']
+
             return render_template('home.html')
         else:
             return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
@@ -96,10 +100,20 @@ def new():
 
     if request.method == "POST":
         prompts = request.form.getlist('prompt')
-        prompts = request.form.getlist('response')
+        responses = request.form.getlist('response')
 
-        
-        
+
+
+        study_dict = {key: value for key, value in zip(prompts, responses)}
+        print(study_dict)
+
+        flashcard_list = []
+        flashcard_list.append(study_dict)
+        set_id = db.execute("INSERT INTO cardsets (user_id, set_name) VALUES (?, ?)", session['user_id'],  "My Flashcards")
+        print(set_id)
+        for item in flashcard_list:
+            db.execute("INSERT INTO flashcards (card, user_id) VALUES (?,?)",item,session['user_id'])
+            
 
 
         return render_template('new.html')

@@ -119,3 +119,14 @@
     height:80px;
     width:120px;
 }
+
+.btn2 {
+
+    background-color:white;
+    border-radius:8px;
+    font-family:"Crimson", Quicksand;
+    font-size:20px;
+    display:flex;
+    align-self:flex-end;
+
+}
