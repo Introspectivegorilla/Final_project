@@ -9,8 +9,8 @@ TODO:
 - create homepage layout (DONE)
 - Make the buttons functional (DONE)
 - finish flashcard shuffle function (Darasimi)
-- create table for flashcards
+- create table for flashcards (DONE)
 - find a way to insert the flashcards into the table
 - make sure each flashcard table is connected only to the specfic user (user_id will likely be used here. Somehow.)
 - Interface/layout for flashcards where user can click on them. May resort to links temporarily 
-- Way for user to type into a "flash card". Will need a form, but with a very different looking textbox
+- Way for user to type into a "flash card". Will need a form, but with a very different looking textbox (DONE KINDA)

@@ -91,10 +91,25 @@ def register():
         return render_template("login.html")
 
 
-@app.route('/new')
+@app.route('/new',methods=["GET", "POST"])
 def new():
-    print("welcome to new.html")
-    return render_template('new.html')
+
+    if request.method == "POST":
+        prompts = request.form.getlist('prompt')
+        prompts = request.form.getlist('response')
+
+        
+        
+
+
+        return render_template('new.html')
+
+    else:
+        return render_template('new.html')
+
+
+
+
 
 
 @app.route('/library')
