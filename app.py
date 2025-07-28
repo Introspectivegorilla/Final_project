@@ -8,19 +8,16 @@ from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 
 
-
 app = Flask(__name__)
-
 
 
 db = SQL("sqlite:///flashcards.db")
 app.secret_key = 'your secret key'
 
-#session uses file system instead of cookies (?) look this up later 
+# session uses file system instead of cookies (?) look this up later
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
-
 
 
 @app.after_request
@@ -32,58 +29,63 @@ def after_request(response):
     return response
 
 
-
 db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT , username VARCHAR(30), hash)")
-#db.execute("DELETE FROM users")
+# db.execute("DELETE FROM users")
 
 
-cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (card_set,picture,title VARCHAR(20),user_id)")
+cards = db.execute(
+    "CREATE TABLE IF NOT EXISTS flashcards (card_set,picture,title VARCHAR(20),user_id)")
 
-@app.route ("/")
+
+@app.route("/")
 def home():
-    
+
     return render_template('login.html')
 
-@app.route("/login", methods=["GET","POST"]) #methods get/post allows us to retrieve and send information from forms (user input) 
+
+# methods get/post allows us to retrieve and send information from forms (user input)
+@app.route("/login", methods=["GET", "POST"])
 def login():
 
-    session.clear() #Forgets any user id. For some reason. That I do not know.
+    # Forgets any user id. For some reason. That I do not know.
+    session.clear()
 
     if request.method == "POST":
         if not request.form.get("username"):
             print("well shit")
-            return render_template('apology.html',apology_message="Enter an actual username.")
+            return render_template('apology.html', apology_message="Enter an actual username.")
         elif not request.form.get("password"):
-            return render_template('apology.html',apology_message="Enter an actual password.")
+            return render_template('apology.html', apology_message="Enter an actual password.")
             print("Hey u cheat")
-        
-    
-    check_table = db.execute("SELECT * FROM users WHERE username=?",request.form.get("username"))
+
+    check_table = db.execute(
+        "SELECT * FROM users WHERE username=?", request.form.get("username"))
     print(check_table)
     if len(check_table) == 1:
         if check_password_hash(check_table[0]['hash'], request.form.get("password")):
             return render_template('home.html')
         else:
-            return render_template('apology.html',apology_message="Incorrect password. Sorry dude.")
+            return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
     else:
-        return render_template('apology.html',apology_message="That username isn't in our database.")
-    #print(check_table)
- 
+        return render_template('apology.html', apology_message="That username isn't in our database.")
+    # print(check_table)
 
 
-@app.route("/register",methods=["GET","POST"])
+@app.route("/register", methods=["GET", "POST"])
 def register():
 
     if request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        check_table = db.execute("SELECT * FROM users WHERE username=?",username)
+        check_table = db.execute(
+            "SELECT * FROM users WHERE username=?", username)
         print(check_table)
         if len(check_table) != 0:
-            return render_template('apology.html',apology_message="Sorry! That username was taken")
+            return render_template('apology.html', apology_message="Sorry! That username was taken")
         else:
             password = generate_password_hash(password)
-            db.execute("INSERT INTO users (username, hash) VALUES (?,?)",username,password)
+            db.execute(
+                "INSERT INTO users (username, hash) VALUES (?,?)", username, password)
             return render_template("login.html")
     else:
         return render_template("login.html")
@@ -91,11 +93,10 @@ def register():
 
 @app.route('/new')
 def new():
-    print("trying to render new.html")
+    print("welcome to new.html")
     return render_template('new.html')
+
 
 @app.route('/library')
 def library():
     return render_template('library.html')
-
-
