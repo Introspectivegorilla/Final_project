@@ -1,12 +1,13 @@
 
 
 function to_new_set() {
-    location.href = "{{ url_for('new_set') }}"
+    console.log("in to new set")
+    location.href = "new"
 
 }
 
 function to_my_cards() {
-    location.href = "{{ url_for('view_sets') }}"
+    location.href = "library"
 
 }
 

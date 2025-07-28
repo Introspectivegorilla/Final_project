@@ -36,6 +36,9 @@ def after_request(response):
 db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT , username VARCHAR(30), hash)")
 #db.execute("DELETE FROM users")
 
+
+cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (card_set,picture,title VARCHAR(20),user_id)")
+
 @app.route ("/")
 def home():
     
@@ -87,11 +90,12 @@ def register():
 
 
 @app.route('/new')
-def new_set():
+def new():
+    print("trying to render new.html")
     return render_template('new.html')
 
 @app.route('/library')
-def view_sets():
+def library():
     return render_template('library.html')
 
 

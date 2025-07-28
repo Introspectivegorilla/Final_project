@@ -5,8 +5,9 @@
 TODO:
 
 - Bare bones login/logout function (DONE)
-- instead of sending you to an apology page, figure out how to display the text on the login/register screen when user makes an error, so they can re-type it without having to restart the website (may need javascript)
-- create homepage layout 
+- instead of sending you to an apology page, figure out how to display the text on the login/register screen when user makes an error, so they can re-type it without having to restart the website (may need javascript) 
+- create homepage layout (DONE)
+- Make the buttons functional (DONE)
 - finish flashcard shuffle function (Darasimi)
 - create table for flashcards
 - find a way to insert the flashcards into the table
