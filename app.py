@@ -86,7 +86,12 @@ def register():
         return render_template("login.html")
 
 
+@app.route('/new')
+def new_set():
+    return render_template('new.html')
 
-
+@app.route('/library')
+def view_sets():
+    return render_template('library.html')
 
 
