@@ -138,3 +138,9 @@ body {
     display:flex;
     align-self:flex-end;
 }
+
+.card_display {
+
+    position:absolute;
+    translate: -50% -50%;
+}

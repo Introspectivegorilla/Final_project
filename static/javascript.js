@@ -32,3 +32,10 @@ function create_new() {
     button.after(new_card_answer)
     button.after(new_card)
 }
+
+function flip_card() {
+
+    
+    const card_prompt = document.getElementById('prompt')
+    card_prompt.remove()
+}

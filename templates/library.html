@@ -8,7 +8,7 @@
         {% for set in set_front %}
 
             <div class="box2">
-                <a href = '{{url_for("play")}}'>{{set['set_name']}}</a>
+                <a href = '{{ url_for("play",set_id = set["set_id"]) }}'>{{set['set_name']}}</a>
             </div>
 
         {% endfor %}
