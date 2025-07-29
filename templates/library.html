@@ -8,9 +8,9 @@
         {% for set in set_front %}
 
             <div class="box2">
-                <h1>{{ set['set_name'] }}</h1>
+                <a href = '{{url_for("play")}}'>{{set['set_name']}}</a>
             </div>
-            
+
         {% endfor %}
     
         

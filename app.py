@@ -128,3 +128,7 @@ def library():
     set_front = db.execute("SELECT * FROM cardsets")
 
     return render_template('library.html',all_cards=all_cards,set_front=set_front)
+
+@app.route('/play')
+def play():
+    return render_template('play.html')
