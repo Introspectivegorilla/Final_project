@@ -59,8 +59,20 @@ function flip_card() {
 
         console.log("no cards left")
     }
-
-//function next_card():
-
-
 }
+
+function next_card() {
+
+    const grab_data = document.getElementById("data-box")
+    const card_set = JSON.parse(grab_data.dataset.info);
+
+
+    if (card_index < card_set.length) {
+        card_index++
+        showing_prompt = false;
+        flip_card();
+    }
+
+
+    }
+

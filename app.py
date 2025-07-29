@@ -6,7 +6,7 @@ from flask import Flask, flash, redirect, render_template, request, session, jso
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
-
+from datetime import timedelta
 
 
 app = Flask(__name__)
@@ -14,6 +14,8 @@ app = Flask(__name__)
 
 db = SQL("sqlite:///flashcards.db")
 app.secret_key = 'your secret key'
+
+app.permanent_session_lifetime = timedelta(minutes=10)
 
 # session uses file system instead of cookies (?) look this up later
 app.config["SESSION_PERMANENT"] = False
@@ -44,7 +46,7 @@ cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL,
 @app.route("/")
 def home():
 
-    return render_template('login.html')
+    return render_template('home.html')
 
 
 # methods get/post allows us to retrieve and send information from forms (user input)
@@ -69,7 +71,8 @@ def login():
         if check_password_hash(check_table[0]['hash'], request.form.get("password")):
             session['user_id'] = check_table[0]['user_id']
 
-            return render_template('home.html')
+            session.permanent = True
+            return redirect("/")
         else:
             return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
     else:

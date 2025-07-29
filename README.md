@@ -17,9 +17,9 @@ TODO:
 
 core functions:
 
-- Get whichever flashcard set user clicked on to render in play.html
-- Create a function that acts as a online flashcard thing (the whole point lol)
-- Make the back button not immediately crash the program 
+- Get whichever flashcard set user clicked on to render in play.html DONE
+- Create a function that acts as a online flashcard thing (the whole point lol) DONEEEE
+- Make the back button not immediately crash the program  DONE LETS GO
 - Fix certain graphics 
 
 optional:
