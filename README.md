@@ -10,7 +10,20 @@ TODO:
 - Make the buttons functional (DONE)
 - finish flashcard shuffle function (Darasimi)
 - create table for flashcards (DONE)
-- find a way to insert the flashcards into the table
-- make sure each flashcard table is connected only to the specfic user (user_id will likely be used here. Somehow.)
-- Interface/layout for flashcards where user can click on them. May resort to links temporarily 
+- find a way to insert the flashcards into the table DONE
+- make sure each flashcard table is connected only to the specfic user (user_id will likely be used here. Somehow.) DONE
+- Interface/layout for flashcards where user can click on them. May resort to links temporarily DONE
 - Way for user to type into a "flash card". Will need a form, but with a very different looking textbox (DONE KINDA)
+
+core functions:
+
+- Get whichever flashcard set user clicked on to render in play.html
+- Create a function that acts as a online flashcard thing (the whole point lol)
+- Make the back button not immediately crash the program 
+- Fix certain graphics 
+
+optional:
+
+- Different formats for different flashcards, choice up to user 
+- Left and right button for if the user got it right or wrong
+- OPtional pcitures on cover for sets 
