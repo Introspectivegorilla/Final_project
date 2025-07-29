@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+{% for set in set_front %}
+    <div class="box2 l-corner">
+
+        <p>{{ set['title'] }}</p>
+
+    </div>
+
+{% endfor %}
+
+{% endblock %}

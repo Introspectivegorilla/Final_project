@@ -2,6 +2,16 @@
 /* https://www.vecteezy.com/free-vector/folder-icon folder icon source */
 
 
+body { 
+
+    background-image: url("aqua_bg.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:cover;
+
+}
+
+
 .box1 {
 
     background-color: white;
@@ -121,12 +131,10 @@
 }
 
 .btn2 {
-
     background-color:white;
     border-radius:8px;
     font-family:"Crimson", Quicksand;
     font-size:20px;
     display:flex;
     align-self:flex-end;
-
 }

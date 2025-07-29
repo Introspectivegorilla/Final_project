@@ -112,12 +112,12 @@ def new():
         for key, value in study_dict.items():
             test=db.execute("INSERT INTO flashcards (prompt, response, user_id, set_id) VALUES (?,?,?,?)",key,value,session['user_id'],set_id)
 
-        print(test)
-            
+        all_cards = db.execute("SELECT * FROM flashcards")
+        set_front = db.execute("SELECT * FROM cardsets")
+        print(set_front)
 
-
-        return render_template('new.html')
-
+        print(all_cards)
+        return render_template('library.html',all_cards=all_cards,set_front=set_front)
     else:
         return render_template('new.html')
 
