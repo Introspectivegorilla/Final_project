@@ -141,3 +141,8 @@ def play(set_id):
 
 
     return render_template('play.html',load_set=load_set,load_cards=load_cards)
+
+@app.route("/logout",methods=["GET","POST"])
+def logout():
+    session.clear()
+    return redirect(url_for('login'))

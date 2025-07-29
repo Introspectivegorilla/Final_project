@@ -76,3 +76,6 @@ function next_card() {
 
     }
 
+function to_log_out() {
+    fetch('/logout', {method: 'post',credentials:'same-origin'})
+}
