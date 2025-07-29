@@ -33,9 +33,34 @@ function create_new() {
     button.after(new_card)
 }
 
+ let card_index = 0;
+ let showing_prompt = false;
+
 function flip_card() {
 
+   
+    const card_box = document.getElementsByClassName('box1')[0]
+    const grab_data = document.getElementById("data-box")
+    const card_set = JSON.parse(grab_data.dataset.info);
+    const prompt_box = document.getElementById("prompt-response")
     
-    const card_prompt = document.getElementById('prompt')
-    card_prompt.remove()
+    if ((card_index < card_set.length) && (showing_prompt===false)) {
+        prompt_box.textContent = card_set[card_index]['prompt']
+        showing_prompt = true;
+        return;
+    }
+    else if (card_index < card_set.length) {
+        prompt_box.textContent = card_set[card_index]['response']
+        showing_prompt = false;
+        return;
+    }
+
+    else {
+
+        console.log("no cards left")
+    }
+
+//function next_card():
+
+
 }

@@ -3,15 +3,14 @@
 
 {% block content %}
 
-<div class = 'center'>
-    <button type="button">Flip</button>
-    <button type="button">Next</button>
-    <div class="box1">
-        {% for card in load_cards %}
-            <h1 id ="response">{{ card['response'] }}</h1>
-            <h1 id="prompt">{{ card['prompt'] }}</h1>
-        
+<div id="data-box" data-info='{{load_cards | tojson }}'></div>
 
+<div class = 'center'>
+    <button type ="button" onclick="flip_card()">Flip</button>
+    <button type="button">Next</button>
+
+    <div class="box1">
+        <h1 id="prompt-response"></h1>
     </div>
 </div>
 

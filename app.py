@@ -2,10 +2,11 @@
 
 import os
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session
+from flask import Flask, flash, redirect, render_template, request, session, jsonify
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
+
 
 
 app = Flask(__name__)
@@ -129,7 +130,7 @@ def library():
 
     return render_template('library.html',all_cards=all_cards,set_front=set_front)
 
-@app.route('/play')
+@app.route('/play<int:set_id>')
 def play(set_id):
 
     load_set = db.execute("SELECT * FROM cardsets WHERE set_id =?",set_id)
