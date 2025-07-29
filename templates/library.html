@@ -3,13 +3,20 @@
 {% block content %}
 
 
-{% for set in set_front %}
-    <div class="box2 l-corner">
 
-        <p>{{ set['title'] }}</p>
+    <div class="vertical">
+        {% for set in set_front %}
 
+            <div class="box2">
+                <h1>{{ set['set_name'] }}</h1>
+            </div>
+            
+        {% endfor %}
+    
+        
+    </div>
     </div>
 
-{% endfor %}
+
 
 {% endblock %}

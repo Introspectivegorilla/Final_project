@@ -105,27 +105,26 @@ def new():
         title = request.form.get('title')
 
         study_dict = {key: value for key, value in zip(prompts, responses)}
-        print(study_dict)
+        #print(study_dict)
 
         set_id = db.execute("INSERT INTO cardsets (user_id, set_name) VALUES (?, ?)", session['user_id'], title)
-        print(set_id)
+        #print(set_id)
         for key, value in study_dict.items():
             test=db.execute("INSERT INTO flashcards (prompt, response, user_id, set_id) VALUES (?,?,?,?)",key,value,session['user_id'],set_id)
 
-        all_cards = db.execute("SELECT * FROM flashcards")
-        set_front = db.execute("SELECT * FROM cardsets")
-        print(set_front)
+        #all_cards = db.execute("SELECT * FROM flashcards")
+        #set_front = db.execute("SELECT * FROM cardsets")
+        #print(set_front)
 
-        print(all_cards)
-        return render_template('library.html',all_cards=all_cards,set_front=set_front)
+        #print(all_cards)
+        return render_template('home.html')
     else:
         return render_template('new.html')
 
-
-
-
-
-
 @app.route('/library')
 def library():
-    return render_template('library.html')
+
+    all_cards = db.execute("SELECT * FROM flashcards")
+    set_front = db.execute("SELECT * FROM cardsets")
+
+    return render_template('library.html',all_cards=all_cards,set_front=set_front)
