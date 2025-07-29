@@ -5,23 +5,24 @@
 {% block content %}
 
 
-<div class="bg1">
 
+<form method="post" action="/new">
+
+    <div class = "box2 l-corner">
+        <input type="text" name="title" placeholder="title">
+        <button type="submit">Create set</button>
+    </div>
 
     <div class="box3 r-corner">
-        <form action="/new" method="post">
-            <input class='question' type="text" name="prompt"> 
-            <input class="answer" type="text" name="response">
-            <button type='button' onclick = "create_new()" class = 'btn3 center'>New</button>
-            <button type="submit">Create set</button>
-        </form>
-            </div>
+        <input class="question" name="prompt" type="text">
+        <input class="answer" type="text" name="response">
+        <button class='btn3 center' type='button' onclick = "create_new()">New</button>
+    </div>
 
-            <div class = 'box2 l-corner'>
+</form>
 
-            </div>
-    
-</div>
+
+
 
 
 {% endblock %}

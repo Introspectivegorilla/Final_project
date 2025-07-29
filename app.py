@@ -27,14 +27,15 @@ def after_request(response):
     response.headers["Expires"] = 0
     response.headers["Pragma"] = "no-cache"
     return response
-
+#db.execute("DROP TABLE flashcards")
+#db.execute("DROP TABLE cardsets")
 
 db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOINCREMENT , username VARCHAR(30), hash)")
 
 
-sets = db.execute("CREATE TABLE IF NOT EXISTS cardsets (set_name VARCHAR(25), set_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
+sets = db.execute("CREATE TABLE IF NOT EXISTS cardsets (set_name VARCHAR(25), set_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
 
-cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL, response TEXT NOT NULL, card_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
+cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL, response TEXT NOT NULL, card_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INT,set_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id),FOREIGN KEY (set_id) REFERENCES cardsets(set_id))")
 
 
 
@@ -101,16 +102,15 @@ def new():
     if request.method == "POST":
         prompts = request.form.getlist('prompt')
         responses = request.form.getlist('response')
-
-
+        title = request.form.get('title')
 
         study_dict = {key: value for key, value in zip(prompts, responses)}
         print(study_dict)
 
-        set_id = db.execute("INSERT INTO cardsets (user_id, set_name) VALUES (?, ?)", session['user_id'],  "My Flashcards")
+        set_id = db.execute("INSERT INTO cardsets (user_id, set_name) VALUES (?, ?)", session['user_id'], title)
         print(set_id)
         for key, value in study_dict.items():
-            test=db.execute("INSERT INTO flashcards (prompt, response, user_id) VALUES (?,?,?)",key,value,session['user_id'])
+            test=db.execute("INSERT INTO flashcards (prompt, response, user_id, set_id) VALUES (?,?,?,?)",key,value,session['user_id'],set_id)
 
         print(test)
             
