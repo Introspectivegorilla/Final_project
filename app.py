@@ -34,7 +34,7 @@ db.execute("CREATE TABLE IF NOT EXISTS users (user_id INTEGER PRIMARY KEY AUTOIN
 
 sets = db.execute("CREATE TABLE IF NOT EXISTS cardsets (set_name VARCHAR(25), set_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
 
-cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (card, card_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
+cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL, response TEXT NOT NULL, card_id INT PRIMARY KEY AUTOINCREMENT, user_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id))")
 
 
 
@@ -107,12 +107,12 @@ def new():
         study_dict = {key: value for key, value in zip(prompts, responses)}
         print(study_dict)
 
-        flashcard_list = []
-        flashcard_list.append(study_dict)
         set_id = db.execute("INSERT INTO cardsets (user_id, set_name) VALUES (?, ?)", session['user_id'],  "My Flashcards")
         print(set_id)
-        for item in flashcard_list:
-            db.execute("INSERT INTO flashcards (card, user_id) VALUES (?,?)",item,session['user_id'])
+        for key, value in study_dict.items():
+            test=db.execute("INSERT INTO flashcards (prompt, response, user_id) VALUES (?,?,?)",key,value,session['user_id'])
+
+        print(test)
             
 
 
