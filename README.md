@@ -35,3 +35,4 @@ bug fixes:
 - Make logout button actually work (DONE)
 - Logout user after inactivity. A work in progress. (DONE)
 - First card doesn't show text, flip must be pressed once (DONE)
+- All users have the same sets?? (DONE)

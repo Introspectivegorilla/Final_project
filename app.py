@@ -143,8 +143,8 @@ def new():
 @login_required
 def library():
 
-    all_cards = db.execute("SELECT * FROM flashcards")
-    set_front = db.execute("SELECT * FROM cardsets")
+    all_cards = db.execute("SELECT * FROM flashcards WHERE user_id=?",session['user_id'])
+    set_front = db.execute("SELECT * FROM cardsets WHERE user_id=?",session['user_id'])
 
     return render_template('library.html',all_cards=all_cards,set_front=set_front)
 
@@ -153,8 +153,8 @@ def library():
 @login_required
 def play(set_id):
 
-    load_set = db.execute("SELECT * FROM cardsets WHERE set_id =?",set_id)
-    load_cards = db.execute("SELECT * FROM flashcards WHERE set_id=?",set_id)
+    load_set = db.execute("SELECT * FROM cardsets WHERE set_id =? AND user_id = ?",set_id,session['user_id'])
+    load_cards = db.execute("SELECT * FROM flashcards WHERE set_id=? AND user_id = ?",set_id,session['user_id'])
 
     print(load_cards[0]['prompt'])
 
