@@ -33,5 +33,5 @@ bug fixes:
 - Create some sort of end when flashcards run out, instead of them just staying stuck on the final card (DONE)
 - Layout login screen so that there is an option to register as well (DONE)
 - Make logout button actually work (DONE)
-- Logout user after inactivity. A work in progress.
+- Logout user after inactivity. A work in progress. (DONE)
 - First card doesn't show text, flip must be pressed once (DONE)

@@ -4,14 +4,14 @@ import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify,url_for
 from flask_session import Session
-from flask_login import login_required
-
+from helpers import login_required
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 from datetime import timedelta
 
 
 app = Flask(__name__)
+
 
 
 db = SQL("sqlite:///flashcards.db")
@@ -25,6 +25,7 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 
 Session(app)
+
 
 
 @app.after_request
@@ -53,8 +54,9 @@ cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL,
 @app.route("/")
 @login_required
 def home():
-
+    
     return render_template('home.html')
+
 
 
 # methods get/post allows us to retrieve and send information from forms (user input)
@@ -156,9 +158,12 @@ def play(set_id):
 
     print(load_cards[0]['prompt'])
 
+
     return render_template('play.html',load_set=load_set,load_cards=load_cards)
 
 @app.route("/logout",methods=["GET","POST"])
 def logout():
+
+
     session.clear()
     return redirect(url_for('login'))
