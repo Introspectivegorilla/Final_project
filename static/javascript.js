@@ -38,7 +38,7 @@ function create_new() {
 
 function flip_card() {
 
-   
+    console.log(card_index)
     const card_box = document.getElementsByClassName('box1')[0]
     const grab_data = document.getElementById("data-box")
     const card_set = JSON.parse(grab_data.dataset.info);
@@ -57,7 +57,7 @@ function flip_card() {
 
     else {
 
-        console.log("no cards left")
+        next_card();
     }
 }
 
@@ -69,6 +69,13 @@ function next_card() {
 
     if (card_index < card_set.length) {
         card_index++
+        showing_prompt = false;
+        flip_card();
+    }
+    else {
+
+        card_index = 0;
+        console.log("this has been triggered")
         showing_prompt = false;
         flip_card();
     }

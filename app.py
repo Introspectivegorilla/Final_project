@@ -18,6 +18,7 @@ app.secret_key = 'your secret key'
 
 
 # session uses file system instead of cookies (?) look this up later
+app.config["SESSION_PERMANENT"] = True
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1)
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -98,7 +99,7 @@ def register():
                 "INSERT INTO users (username, hash) VALUES (?,?)", username, password)
             return render_template("login.html")
     else:
-        return render_template("login.html")
+        return render_template("register.html")
 
 
 @app.route('/new',methods=["GET", "POST"])
