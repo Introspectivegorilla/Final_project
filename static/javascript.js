@@ -77,5 +77,5 @@ function next_card() {
     }
 
 function to_log_out() {
-    fetch('/logout', {method: 'post',credentials:'same-origin'})
+    fetch('/logout', {method: 'POST',credentials:'same-origin'}).then(function(response) { if (response.redirected) { window.location.href = response.url;}});
 }

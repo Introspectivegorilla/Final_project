@@ -2,7 +2,7 @@
 
 import os
 from cs50 import SQL
-from flask import Flask, flash, redirect, render_template, request, session, jsonify
+from flask import Flask, flash, redirect, render_template, request, session, jsonify,url_for
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
@@ -15,10 +15,10 @@ app = Flask(__name__)
 db = SQL("sqlite:///flashcards.db")
 app.secret_key = 'your secret key'
 
-app.permanent_session_lifetime = timedelta(minutes=10)
+
 
 # session uses file system instead of cookies (?) look this up later
-app.config["SESSION_PERMANENT"] = False
+app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1)
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
@@ -55,7 +55,7 @@ def login():
 
     # Forgets any user id. For some reason. That I do not know.
     session.clear()
-
+    session.permanent=True
     if request.method == "POST":
         if not request.form.get("username"):
             print("well shit")
@@ -71,7 +71,6 @@ def login():
         if check_password_hash(check_table[0]['hash'], request.form.get("password")):
             session['user_id'] = check_table[0]['user_id']
 
-            session.permanent = True
             return redirect("/")
         else:
             return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
