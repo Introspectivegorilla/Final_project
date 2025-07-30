@@ -3,20 +3,16 @@
 {% block content %}
 
 
-
-    <div class="vertical">
+    <div class="rows"> 
         {% for set in set_front %}
 
-            <div class="box2">
-                <a href = '{{ url_for("play",set_id = set["set_id"]) }}'>{{set['set_name']}}</a>
+            <div class="box5">
+                <a class="link_font" href = '{{ url_for("play",set_id = set["set_id"]) }}'>{{set['set_name']}}</a>
             </div>
 
         {% endfor %}
-    
+    </div>
         
-    </div>
-    </div>
-
 
 
 {% endblock %}
