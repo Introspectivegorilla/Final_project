@@ -65,7 +65,9 @@ def home():
 def login():
 
     # Forgets any user id. For some reason. That I do not know.
-    session.clear()
+    if 'user_id' in session:
+        return redirect("/")
+
 
     if request.method == "POST":
         if not request.form.get("username"):
@@ -163,7 +165,6 @@ def play(set_id):
 
 @app.route("/logout",methods=["GET","POST"])
 def logout():
-
-
+    
     session.clear()
     return redirect(url_for('login'))
