@@ -34,7 +34,7 @@ function create_new() {
 }
 
  let card_index = 0;
- let showing_prompt = false;
+ let showing_prompt = true;
 
 function flip_card() {
 

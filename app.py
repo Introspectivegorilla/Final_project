@@ -141,6 +141,7 @@ def play(set_id):
     load_set = db.execute("SELECT * FROM cardsets WHERE set_id =?",set_id)
     load_cards = db.execute("SELECT * FROM flashcards WHERE set_id=?",set_id)
 
+    print(load_cards[0]['prompt'])
 
     return render_template('play.html',load_set=load_set,load_cards=load_cards)
 
