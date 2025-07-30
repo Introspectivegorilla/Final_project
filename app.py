@@ -64,19 +64,21 @@ def login():
             return render_template('apology.html', apology_message="Enter an actual password.")
             print("Hey u cheat")
 
-    check_table = db.execute(
-        "SELECT * FROM users WHERE username=?", request.form.get("username"))
-    print(check_table)
-    if len(check_table) == 1:
-        if check_password_hash(check_table[0]['hash'], request.form.get("password")):
-            session['user_id'] = check_table[0]['user_id']
+        check_table = db.execute(
+            "SELECT * FROM users WHERE username=?", request.form.get("username"))
+        print(check_table)
+        if len(check_table) == 1:
+            if check_password_hash(check_table[0]['hash'], request.form.get("password")):
+                session['user_id'] = check_table[0]['user_id']
 
-            return redirect("/")
+                return redirect("/")
+            else:
+                return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
         else:
-            return render_template('apology.html', apology_message="Incorrect password. Sorry dude.")
+            return render_template('apology.html', apology_message="That username isn't in our database.")
+        # print(check_table)
     else:
-        return render_template('apology.html', apology_message="That username isn't in our database.")
-    # print(check_table)
+        return render_template('login.html')
 
 
 @app.route("/register", methods=["GET", "POST"])

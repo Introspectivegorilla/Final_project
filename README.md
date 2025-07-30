@@ -27,3 +27,9 @@ optional:
 - Different formats for different flashcards, choice up to user 
 - Left and right button for if the user got it right or wrong
 - OPtional pcitures on cover for sets 
+
+bug fixes:
+
+- Create some sort of end when flashcards run out, instead of them just staying stuck on the final card
+- Layout login screen so that there is an option to register as well
+- Make logout button actually work DONE
