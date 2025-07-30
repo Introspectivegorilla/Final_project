@@ -4,6 +4,8 @@ import os
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, jsonify,url_for
 from flask_session import Session
+from flask_login import login_required
+
 from werkzeug.security import check_password_hash, generate_password_hash
 import sqlite3
 from datetime import timedelta
@@ -18,9 +20,10 @@ app.secret_key = 'your secret key'
 
 
 # session uses file system instead of cookies (?) look this up later
-app.config["SESSION_PERMANENT"] = True
-app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1)
+app.config["SESSION_PERMANENT"] = False
+#app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=1)
 app.config["SESSION_TYPE"] = "filesystem"
+
 Session(app)
 
 
@@ -41,22 +44,27 @@ sets = db.execute("CREATE TABLE IF NOT EXISTS cardsets (set_name VARCHAR(25), se
 
 cards = db.execute("CREATE TABLE IF NOT EXISTS flashcards (prompt TEXT NOT NULL, response TEXT NOT NULL, card_id INTEGER PRIMARY KEY AUTOINCREMENT, user_id INT,set_id INT, FOREIGN KEY (user_id) REFERENCES users(user_id),FOREIGN KEY (set_id) REFERENCES cardsets(set_id))")
 
+# @app.before_request
+# def annoying_session():
+#     session.permanent=True
 
 
 
 @app.route("/")
+@login_required
 def home():
 
     return render_template('home.html')
 
 
 # methods get/post allows us to retrieve and send information from forms (user input)
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
     # Forgets any user id. For some reason. That I do not know.
     session.clear()
-    session.permanent=True
+
     if request.method == "POST":
         if not request.form.get("username"):
             print("well shit")
@@ -103,6 +111,7 @@ def register():
 
 
 @app.route('/new',methods=["GET", "POST"])
+@login_required
 def new():
 
     if request.method == "POST":
@@ -127,7 +136,9 @@ def new():
     else:
         return render_template('new.html')
 
+
 @app.route('/library')
+@login_required
 def library():
 
     all_cards = db.execute("SELECT * FROM flashcards")
@@ -135,7 +146,9 @@ def library():
 
     return render_template('library.html',all_cards=all_cards,set_front=set_front)
 
+
 @app.route('/play<int:set_id>')
+@login_required
 def play(set_id):
 
     load_set = db.execute("SELECT * FROM cardsets WHERE set_id =?",set_id)
