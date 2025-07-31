@@ -40,7 +40,7 @@ bug fixes:
 
 Layout:
 
-- Text doesn't wrap around in flash cards and it looks really weird
+- Text doesn't wrap around in flash cards and it looks really weird (DONE)
 - Create new button is stuck in some random spot and is also ugly 
 - Home page elements aren't quite centered
-- answer flashcards aren't centered (when flipping)
+- answer flashcards aren't centered (when flipping) (DONE)

@@ -3,6 +3,8 @@
 <link href="/static/styles.css" rel = 'stylesheet'>
 
 
+<script src="{{ url_for('static', filename='javascript.js') }}"></script>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
@@ -20,12 +22,14 @@
         <h2 class="h2welcome">Study habits</h2>
         <form class='form' action ="/login" method="post">
 
-            <input class='form mainLoginInput' name="username" type="text" placeholder = "Username">
-            <input class='form mainLoginInput' name="password" type="text" placeholder = "Password">
-            <button class="login" type="submit">Login</button>
+            <input class='mainLoginInput' name="username" type="text" placeholder = "Username">
+            <input class='mainLoginInput' name="password" type="text" placeholder = "Password">
 
+            <div class="rows">
+                <button class="login" type="submit">Login</button>
+                <button class="login" type='button' onclick="to_register()">Register</button>
 
-            <a href="{{ url_for('register')}}">No account? Register here!</a>
+            </div>
 
         </form>
     </div>

@@ -11,6 +11,10 @@ function to_my_cards() {
 
 }
 
+function to_register() {
+    location.href="register"
+}
+
 function create_new() {
 
     const container = document.getElementsByClassName("box3 r-corner")[0]
