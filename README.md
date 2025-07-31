@@ -36,3 +36,11 @@ bug fixes:
 - Logout user after inactivity. A work in progress. (DONE)
 - First card doesn't show text, flip must be pressed once (DONE)
 - All users have the same sets?? (DONE)
+
+
+Layout:
+
+- Text doesn't wrap around in flash cards and it looks really weird
+- Create new button is stuck in some random spot and is also ugly 
+- Home page elements aren't quite centered
+- answer flashcards aren't centered (when flipping)

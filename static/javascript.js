@@ -21,10 +21,12 @@ function create_new() {
     new_card_answer.name="response"
     new_card_answer.className="answer"
     new_card_answer.type='text'
+    new_card_answer.classList.add("link_font")
 
     new_card.name = "prompt"
     new_card.className = "question"
     new_card.type="text"
+    new_card.classList.add("link_font")
 
 
     container.appendChild(new_card)
