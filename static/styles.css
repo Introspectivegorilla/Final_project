@@ -224,7 +224,7 @@ h1 {
     justify-content:center;
     align-items:center;
     align-content:center;
-    height:100vh;
+    height:80vh;
 
 }
 
@@ -342,6 +342,13 @@ h1 {
     justify-content:space-evenly;
 }
 
+.rows2 {
+
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+}
+
 .link_font {
 
     font-family:"Nunito Sans",cursive;
@@ -354,7 +361,7 @@ h1 {
     display:flex;
     align-items:flex-start;
     justify-content:center;
-    height:100vh;
+
 }
 
 .title {
@@ -404,4 +411,21 @@ textarea {
     display:block;
     margin:0;
     padding:0;
+}
+
+.page-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.navbar {
+    position:fixed;
+    bottom:0px;
+    left:0px;
+    height:60px;
+    width:100%;
+    background-color:white;
+    border-color:white;
 }
