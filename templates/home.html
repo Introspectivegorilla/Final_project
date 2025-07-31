@@ -11,14 +11,14 @@
         <div class="horizontal">
             <div class="vertical">
                 <h1>New flashcard set</h1>
-                <button onclick="to_new_set()">
-                    <img src = "{{ url_for('static',filename='plus_sign.png')}}" width="100px" height="100px">
+                <button class='noborder' onclick="to_new_set()">
+                    <img class = "image" src = "{{ url_for('static',filename='plus_sign_new.png')}}" width="100px" height="100px">
                 </button>
             </div>
             <div class = 'vertical'>
                 <h1>My sets</h1>
-                <button onclick="to_my_cards()">
-                    <img src="{{ url_for('static',filename='folder_icon.jpg')}}" width="100px" height="100px">
+                <button class='noborder' onclick="to_my_cards()">
+                    <img class="image" src="{{ url_for('static',filename='folder_resized.jpg')}}" width="100px" height="100px">
                 </button>
             </div>
         </div>
