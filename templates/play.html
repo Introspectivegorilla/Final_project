@@ -5,17 +5,16 @@
 
 <div id="data-box" data-info='{{load_cards | tojson }}'></div>
 
-<div class="conatiner2">
+<div class="container2">
     <button class='login' type ="button" onclick="flip_card()">Flip</button>
-        <button class='login' type="button" onclick ="next_card()">Next</button>
-        </div>
+    <button class='login' type="button" onclick ="next_card()">Next</button>
+</div>
         
         
-        <div class = 'container'>
-        
-            <div class="box6">
-                    <p class="p1" id="prompt-response">{{load_cards[0]['prompt']}}</p>
-                        </div>
-                        </div>
+<div class = 'container'> 
+    <div class="box6">
+        <p class="p1" id="prompt-response">{{load_cards[0]['prompt']}}</p>
+    </div>
+ </div>
                         
-                        {% endblock %}}
+{% endblock}

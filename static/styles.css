@@ -356,3 +356,17 @@ h1 {
 textarea {
     resize:none;
 }
+
+.new_card {
+
+    border-radius:40px;
+    background-color:aquamarine;
+    color:white;
+    font-family:'Nunito Sans';
+    font-size:24px;
+    height:40px;
+    width:100px;
+    border-color:mediumseagreen;
+    margin:10px;
+    text-align:center;
+}
